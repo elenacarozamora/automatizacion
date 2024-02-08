@@ -13,6 +13,20 @@ public abstract class BaseControllerAbstract {
 
     public WebDriver driver = new ChromeDriver();
 
+    public static Properties getProperties() throws IOException {
+        PropertiesUrl protUrl = new PropertiesUrl();
+        String propt = protUrl.getRutaProperties();
+        File file = new File(propt);
+        FileInputStream configFileReader = new FileInputStream(file);
+        Properties prop = new Properties();
+        prop.load(configFileReader);
+        return prop;
+    }
+
+    public static String getRuta() throws IOException {
+        return getProperties().getProperty("env.ruta");
+    }
+
     public WebDriver getDriver() {
         return driver;
     }
@@ -28,20 +42,6 @@ public abstract class BaseControllerAbstract {
 
     public String getUrl() throws IOException {
         return getProperties().getProperty("env.url");
-    }
-
-    public static Properties getProperties() throws IOException {
-        PropertiesUrl protUrl = new PropertiesUrl();
-        String propt = protUrl.getRutaProperties();
-        File file = new File(propt);
-        FileInputStream configFileReader = new FileInputStream(file);
-        Properties prop = new Properties();
-        prop.load(configFileReader);
-        return prop;
-    }
-
-    public static String getRuta() throws IOException {
-        return getProperties().getProperty("env.ruta");
     }
 
     public void tearDown() {
