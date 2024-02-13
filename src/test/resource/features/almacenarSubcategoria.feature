@@ -4,7 +4,7 @@ Feature: Subcategoria Nombre
   Rule: Subcategoria Nombres
 
 
-    @AED-6_Subcategoria
+    @AED-5_Subcategoria
     Scenario: Subcategoria Nombre
       When Entrar pagina principal
       Then Subcategoria nombres
