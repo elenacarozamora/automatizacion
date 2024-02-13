@@ -8,3 +8,4 @@ Feature: Almacenar Nombre
     Scenario: Almacenar Nombre
       When Entrar pagina principal
       Then Guardar nombres
+      And Cerrar pagina

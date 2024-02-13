@@ -1,11 +1,12 @@
-import cucumber.api.CucumberOptions;
-import cucumber.api.SnippetType;
-import cucumber.api.junit.Cucumber;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
+
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resource/features",
-        snippets = SnippetType.CAMELCASE)
+        //  tags="@tag1",
+        glue = "")
 public class RunCucumberTest {
 }

@@ -8,4 +8,5 @@ Feature: Navegar en la pagina Oscaro
     Scenario: Navegar por el menu principal
       When Entrar pagina principal
       Then Navegar por los tipos de servicios
+      And Cerrar pagina
 

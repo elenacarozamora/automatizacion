@@ -8,7 +8,7 @@ configuration files java [`src/test/java`](./src/test/java) folder. Files resour
 
 selenium - page object -  data Driven - Maven
 
-versions Java version "21.0.2" 2024-01-16 LTS  Apache Maven 3.9.6 
+versions Java version "1.8" 2024-01-16 LTS  Apache Maven 3.9.6 
 
 Find more information on the main repo on [GitHub](https://github.com/elenacarozamora/automatizacion).
 

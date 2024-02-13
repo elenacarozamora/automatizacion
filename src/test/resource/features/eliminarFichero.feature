@@ -8,3 +8,4 @@ Feature: Eliminar fichero
   Scenario: Eliminar Fichero
     When Entrar pagina principal
     Then Eliminar ficheros
+    And Cerrar pagina
