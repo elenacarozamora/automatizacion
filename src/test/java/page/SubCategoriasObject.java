@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.github.cliftonlabs.json_simple.JsonObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utilities.FicheroUtl;
@@ -25,9 +26,16 @@ public class SubCategoriasObject extends BasePageAbstract {
         ficheroUtl = new FicheroUtl();
     }
 
-    public boolean crearSubcategorJson(String ruta) {
+    public void crearSubcategorJson(String ruta) {
         guardarSubCategorias(ruta, cargarFichero(ruta, ficheroUtl));
-        return true;
+    }
+
+    public void waitElementSubcategoria(Integer numCategorias) {
+        try {
+            waitForElement(webDriver, By.xpath("(//ul[@class='list-collapse link-tertiary'])[" + numCategorias + "]/li/span"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void guardarSubCategorias(String ruta, JsonObject json) {
@@ -36,8 +44,9 @@ public class SubCategoriasObject extends BasePageAbstract {
         List<WebElement> listCat = categorias.getNombresCategorias();
         int numCat = 1;
         for (WebElement cat : listCat) {
+            waitElementSubcategoria(numCat);
             List<WebElement> listSub = subCategoria.getNombresSubcategorias(numCat);
-            List<String> map = new ArrayList();
+            List<String> map = new ArrayList<String>();
             for (WebElement subCat : listSub) {
                 map.add(subCat.getText());
             }

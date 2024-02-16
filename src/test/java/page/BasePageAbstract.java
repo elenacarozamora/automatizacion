@@ -5,19 +5,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.FicheroUtl;
 
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.Map;
+
+import static java.lang.Thread.sleep;
 
 public abstract class BasePageAbstract {
 
-    public WebElement waitForElement(WebDriver driver, By locator) {
-        return new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(locator));
+    public void waitForElement(WebDriver driver, By locator) throws InterruptedException {
+        //new WebDriverWait(driver, 6).until(ExpectedConditions.elementToBeClickable(locator));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        sleep(2000);
+        js.executeScript("arguments[0].scrollIntoView();", driver.findElement(locator));
+
     }
 
     public JsonObject cargarFichero(String ruta, FicheroUtl ficheroUtl) {
@@ -26,12 +33,11 @@ public abstract class BasePageAbstract {
     }
 
 
-    public boolean eliminarJsonFile(String ruta, FicheroUtl ficheroUtl) {
+    public void eliminarJsonFile(String ruta, FicheroUtl ficheroUtl) {
         try {
-            return ficheroUtl.eliminarJsonFile(ruta);
+            ficheroUtl.eliminarJsonFile(ruta);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 

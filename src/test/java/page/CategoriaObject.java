@@ -19,28 +19,26 @@ public class CategoriaObject extends BasePageAbstract {
 
     WebDriver webDriver;
     FicheroUtl ficheroUtl;
-    By element = By.xpath("//div[@class='category-item-header']//h2/a");
 
     public CategoriaObject(WebDriver remoteDriver) {
         webDriver = remoteDriver;
         ficheroUtl = new FicheroUtl();
     }
 
-    public boolean crearJson(String ruta) {
+    public void crearJson(String ruta) {
         try {
             eliminarFichero(ruta);
             JsonObject json = ficheroUtl.crearJsonFile();
             guardarCategorias(ruta, json);
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
 
     }
 
-    public void guardarCategorias(String ruta, JsonObject json) {
+    public void guardarCategorias(String ruta, JsonObject json) throws InterruptedException {
         Categoria categorias = new Categoria(webDriver);
+        By element = By.xpath("//div[@class='category-item-header']//h2/a");
         waitForElement(webDriver, element);
         List<WebElement> list = categorias.getNombresCategorias();
         for (WebElement cat : list) {
@@ -50,7 +48,7 @@ public class CategoriaObject extends BasePageAbstract {
 
     public void writeJsonFile(String cat, String ruta, JsonObject json) {
         ObjectMapper mapper = new ObjectMapper();
-        HashMap<String, String> map = new HashMap();
+        HashMap<String, String> map = new HashMap<String, String>();
         try {
             json.put(cat, map);
             ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
@@ -60,8 +58,8 @@ public class CategoriaObject extends BasePageAbstract {
         }
     }
 
-    public boolean eliminarFichero(String ruta) {
-        return eliminarJsonFile(ruta, ficheroUtl);
+    public void eliminarFichero(String ruta) {
+        eliminarJsonFile(ruta, ficheroUtl);
     }
 
 }

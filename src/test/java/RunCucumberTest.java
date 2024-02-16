@@ -1,9 +1,11 @@
-import io.cucumber.junit.Cucumber;
+
 import io.cucumber.junit.CucumberOptions;
+import io.cucumber.junit.CucumberSerenityRunner;
 import org.junit.runner.RunWith;
 
 
-@RunWith(Cucumber.class)
+@RunWith(CucumberSerenityRunner.class)
+//@RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resource/features",
         glue = "")

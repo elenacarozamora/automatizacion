@@ -1,3 +1,4 @@
+@EXTRACCION_DATOS
 Feature: Eliminar fichero
 
   # Eliminar fichero
@@ -7,5 +8,5 @@ Feature: Eliminar fichero
   @AED-4_DeleteFile
   Scenario: Eliminar Fichero
     When Entrar pagina principal
-    Then Eliminar ficheros
+    Then Eliminar fichero
     And Cerrar pagina

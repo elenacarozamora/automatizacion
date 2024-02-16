@@ -1,3 +1,4 @@
+@EXTRACCION_DATOS
 Feature: Subcategoria Nombre
   Subcategoria nombres en el fichero Json
 

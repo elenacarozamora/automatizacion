@@ -1,35 +1,46 @@
 package Data;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
 import java.util.List;
+import static java.lang.Thread.sleep;
 
 public class Familia {
     WebDriver webDriver;
-    String nombre;
-    ArrayList<Producto> productos;
 
     public Familia(WebDriver remoteDriver) {
         webDriver = remoteDriver;
     }
 
-    public List<WebElement> getNombresFamilia(Integer cat, Integer sub) {
+    public void clickVerMas() {
+        List<WebElement> verMas = webDriver.findElements(By.xpath("(//li[@class='bold m-t-100'])"));
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        int cont = 1;
+        for (WebElement verM : verMas) {
+            js.executeScript("arguments[0].scrollIntoView();", webDriver.findElement(By.xpath("(//li[@class='bold m-t-100'])[" + cont + "]")));
+
+            webDriver.findElement(By.xpath("(//li[@class='bold m-t-100'])[" + cont + "]")).click();
+            cont++;
+        }
+    }
+
+    public List<WebElement> getNombresFamilia(Integer cat, Integer sub) throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        js.executeScript("arguments[0].scrollIntoView();", webDriver.findElement(By.xpath("((//ul[@class='list-collapse link-tertiary'])[" + cat + "]/li)[" + sub + "]")));
+
+        sleep(3000);
         webDriver.findElement(By.xpath("((//ul[@class='list-collapse link-tertiary'])[" + cat + "]/li)[" + sub + "]")).click();
-        return webDriver.findElements(By.xpath("((//ul[@class='list-collapse link-tertiary'])[" + cat + "]/li)[" + sub + "]/ul/li/a"));
+        js.executeScript("arguments[0].scrollIntoView();", webDriver.findElement(By.xpath("((//ul[@class='list-collapse link-tertiary'])[" + cat + "]/li)[" + sub + "]/ul/li/a")));
+
+        sleep(2000);
+        List<WebElement> result = webDriver.findElements(By.xpath("((//ul[@class='list-collapse link-tertiary'])[" + cat + "]/li)[" + sub + "]/ul/li/a"));
+        return result;
     }
 
-    public ArrayList<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(ArrayList<Producto> productos) {
-        this.productos = productos;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void cerrarSubcategoria(Integer cat) {
+        webDriver.findElement(By.xpath("((//ul[@class='list-collapse link-tertiary'])[" + cat + "]/li[@class='open']//span)[1]")).click();
     }
 }

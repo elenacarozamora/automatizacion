@@ -1,3 +1,4 @@
+@EXTRACCION_DATOS
 Feature: Navegar en la pagina Oscaro
 
   Navegar en Oscaro por el menu y categorias

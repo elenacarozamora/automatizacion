@@ -15,3 +15,7 @@ Find more information on the main repo on [GitHub](https://github.com/elenacaroz
 -Dcucumber.filter.tags=@TEST
 
 -Dwebdriver.chrome.driver=src/test/resource/WebDrivers/chromedriver.exe
+
+Comando mvn clean test -Dcucumber.filter.tags=@TEST -Dwebdriver.chrome.driver=src/test/resource/WebDrivers/chromedriver.exe 
+
+RESULTADO FICHERO CON DATOS -- src/test/resource/ficheroResult

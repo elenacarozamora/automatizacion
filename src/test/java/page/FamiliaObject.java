@@ -25,9 +25,8 @@ public class FamiliaObject extends BasePageAbstract {
         ficheroUtl = new FicheroUtl();
     }
 
-    public boolean crearFamiliasJson(String ruta) {
+    public void crearFamiliasJson(String ruta) throws InterruptedException {
         guardarFamilias(ruta, cargarFichero(ruta, ficheroUtl));
-        return true;
     }
 
     public void waitElementFamilia(Integer numCategorias, Integer numSubCategorias) {
@@ -44,25 +43,32 @@ public class FamiliaObject extends BasePageAbstract {
         List<WebElement> listCat = categorias.getNombresCategorias();
         SubCategoria subCategoria = new SubCategoria(webDriver);
         Familia familia = new Familia(webDriver);
-        Map<String, Map> mapCategoriasMap = new HashMap();
+
+        Map<String, Map> mapCategoriasMap = new HashMap<String, Map>();
         int numCategorias = 1;
+        familia.clickVerMas();
+
         for (WebElement cat : listCat) {
             List<WebElement> listSub = subCategoria.getNombresSubcategorias(numCategorias);
             int numSubCategorias = 1;
-            Map<String, List> subCategoriaMap = new HashMap();
+            Map<String, List> subCategoriaMap = new HashMap<String, List>();
+
             for (WebElement subCat : listSub) {
-                List<String> listFamilias = new ArrayList();
-                List<WebElement> listadoXpathFamilias = familia.getNombresFamilia(numCategorias, numSubCategorias);
-                waitElementFamilia(numCategorias, numSubCategorias);
-                for (WebElement familiaObj : listadoXpathFamilias) {
-                    listFamilias.add(familiaObj.getText());
-                }
+                List<String> listFamilias = new ArrayList<String>();
                 try {
-                    subCategoriaMap.put(subCat.getText(), listFamilias);
+                    List<WebElement> listadoXpathFamilias = familia.getNombresFamilia(numCategorias, numSubCategorias);
+                    waitElementFamilia(numCategorias, numSubCategorias);
+                    for (WebElement familiaObj : listadoXpathFamilias) {
+                        listFamilias.add(familiaObj.getText());
+                    }
+                    familia.cerrarSubcategoria(numCategorias);
+                    WebElement textCategoria = webDriver.findElement(By.xpath("(((//ul[@class='list-collapse link-tertiary'])[" + numCategorias + "]/li)/span)[" + numSubCategorias + "]"));
+
+                    subCategoriaMap.put(textCategoria.getText(), listFamilias);
+                    numSubCategorias++;
                 } catch (Exception e) {
-                    subCategoriaMap.put("No se cargaron familias para esta subcategpria", listFamilias);
+                    break;
                 }
-                numSubCategorias++;
             }
             mapCategoriasMap.put(cat.getText(), subCategoriaMap);
             numCategorias++;

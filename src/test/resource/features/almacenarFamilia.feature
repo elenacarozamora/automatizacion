@@ -1,3 +1,4 @@
+@EXTRACCION_DATOS
 Feature: Familia Nombre
   Familia nombres en el fichero Json
 

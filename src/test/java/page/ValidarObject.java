@@ -10,7 +10,7 @@ public class ValidarObject extends BasePageAbstract {
         webDriver = remoteDriver;
     }
 
-    public void validarHome() {
+    public void validarHome() throws InterruptedException {
         By btnDelt = By.xpath("(//button[@class='btn-default'])[1]");
         waitForElement(webDriver, btnDelt);
         webDriver.findElement(btnDelt).click();
