@@ -31,8 +31,16 @@ public abstract class BaseControllerAbstract {
         driver.get(getProperties().getProperty("env.url"));
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
     public void setUp(String url) {
         driver.get(url);
+    }
+
+    public String getUrl() throws IOException {
+        return getProperties().getProperty("env.url");
     }
 
     public void tearDown() {

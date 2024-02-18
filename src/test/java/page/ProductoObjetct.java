@@ -32,7 +32,7 @@ public class ProductoObjetct extends BasePageAbstract {
         ficheroUtl = new FicheroUtl();
     }
 
-    public void crearProductoJsonCom(String ruta) {
+    public void crearProductoJson(String ruta) {
         try {
             Integer categoria = (Integer.valueOf(System.getProperty("param.categoria")) != null) ? Integer.valueOf(System.getProperty("param.categoria")) : Integer.valueOf(getProperties().getProperty("param.categoria"));
 
