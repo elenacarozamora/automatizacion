@@ -3,16 +3,29 @@ package controller;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.thucydides.core.annotations.Steps;
 import page.*;
 
 import java.io.IOException;
 
 public class HomeController extends BaseControllerAbstract {
+
+    @Steps
     ValidarObject indexPage = new ValidarObject(driver);
+
+    @Steps
     NavegarObject homePage = new NavegarObject(driver);
+
+    @Steps
     CategoriaObject categoriaPage = new CategoriaObject(driver);
+
+    @Steps
     FamiliaObject familiasPage = new FamiliaObject(driver);
+
+    @Steps
     SubCategoriasObject subCategoriasPage = new SubCategoriasObject(driver);
+
+    @Steps
     ProductoObjetct productoObjetct = new ProductoObjetct(driver);
 
 

@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utilities.FicheroUtl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,15 +74,17 @@ public class ProductoObjetct extends BasePageAbstract {
             while (cntProdt < listadoXpathProducto.size()) {
                 String productoObjt;
                 String precio;
+                String fabricante;
                 JavascriptExecutor js = (JavascriptExecutor) webDriver;
                 sleep(2000);
                 js.executeScript("arguments[0].scrollIntoView();", webDriver.findElement(By.xpath("(//article[@class='product-card'])[" + cntProdt + "]")));
-                productoObjt = "Nombre: " + webDriver.findElement(By.xpath("(//article[@class='product-card'])[" + cntProdt + "]//h3/span")).getText();
+                productoObjt = "Descripción: " + webDriver.findElement(By.xpath("(//article[@class='product-card'])[" + cntProdt + "]//h3/span")).getText();
+                fabricante = "Fabricante: " + webDriver.findElement(By.xpath("(//article[@class='product-card'])[" + cntProdt + "]//h3/span[@class='product-name']")).getText();
 
                 precio = " Precio: " + webDriver.findElement(By.xpath("(//article[@class='product-card'])[" + cntProdt + "]//p/span")).getText();
                 String marca = webDriver.findElement(By.xpath("(//article[@class='product-card'])[" + cntProdt + "]//h3/span/span")).getText();
 
-                pageProdt.add(productoObjt + precio + " Marca: " + marca);
+                pageProdt.add(productoObjt + precio + " Código: " + marca);
                 cntProdt++;
             }
             listProductos.put(pageNum, pageProdt);
@@ -94,7 +95,7 @@ public class ProductoObjetct extends BasePageAbstract {
         subCategoriaMap.put(Sub, listFamilias);
 
         mapCategoriasMap.put(Cat, subCategoriaMap);
-        writeJsonFile("Data", mapCategoriasMap, ruta, json);
+        writeJsonFile("src/main/Data", mapCategoriasMap, ruta, json);
     }
 
 

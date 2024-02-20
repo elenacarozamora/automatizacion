@@ -4,7 +4,7 @@ Here will be some information about the app.
 
 The folder structure [`src`](./src)
 
-configuration files java [`src/test/java`](./src/test/java) folder. Files resources ['src/test/resource'](./src/test/resource) folder. 
+configuration files java [`src/test/java`](src/main/java) folder. Files resources ['src/test/resource'](src/main/resources) folder. 
 
 selenium - page object -  data Driven - Maven
 
