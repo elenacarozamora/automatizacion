@@ -12,10 +12,8 @@ versions Java version "1.8" 2024-01-16 LTS  Apache Maven 3.9.6
 
 Find more information on the main repo on [GitHub](https://github.com/elenacarozamora/automatizacion).
 
--Dcucumber.filter.tags=@TEST
+COMANDO PARA EJECUTAR- mvn clean install -Dcucumber.filter.tags=@AED-7_Producto -Dparam.categoria=1 -Dparam.subcategoria=3 -Dparam.familia=1 -Dparam.hastaPagina=4 -Dwebdriver.chrome.driver=src/test/resources/WebDrivers/chromedriver.exe
 
--Dwebdriver.chrome.driver=src/test/resource/WebDrivers/chromedriver.exe
+PARAMETRIZADO LA FAMILIA, LA CATEGORIA Y LA SUBCATEGORIA, ADEMÁS TAMBIÉN SE INCLUYÓ EL NUMERO DE PAGINAS QUE QUIERE IMPIRMIR
 
-Comando mvn clean test -Dcucumber.filter.tags=@TEST -Dwebdriver.chrome.driver=src/test/resource/WebDrivers/chromedriver.exe 
-
-RESULTADO FICHERO CON DATOS -- src/test/resource/ficheroResult
+RUTA DONDE SE GUARDA EL FICHERO  ---src/test/resources/ficheroResult
